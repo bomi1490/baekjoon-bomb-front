@@ -1,0 +1,201 @@
+{
+  "1": {
+    "option": "EI",
+    "question": "둘 중 더 나에 해당하는 것은?",
+    "answers": [
+      {
+        "type": "E",
+        "content": "주중 회사(실내)였으니 주말엔 밖에 나가야한다"
+      },
+      { "type": "I", "content": "주중 회사(집밖)였으니 주말엔 집에 있어야한다" }
+    ]
+  },
+  "2": {
+    "option": "SN",
+    "question": "아무생각하지마",
+    "answers": [
+      { "type": "S", "content": "응 아무생각 안할게" },
+      {
+        "type": "N",
+        "content": "아무생각하지말라고? 그럼 일단 백지를 상상하자"
+      }
+    ]
+  },
+  "3": {
+    "option": "TF",
+    "question": "슬픔을 나누면",
+    "answers": [
+      { "type": "T", "content": "슬픈사람이 둘이 된다" },
+      { "type": "F", "content": "반이 된다" }
+    ]
+  },
+  "4": {
+    "option": "JP",
+    "question": "둘 중 더 나에 해당하는 것은?",
+    "answers": [
+      {
+        "type": "J",
+        "content": "오늘 오후에 공부랑 방 청소한 다음 치킨 집에 가려고 했는데 그냥 안함"
+      },
+      {
+        "type": "P",
+        "content": "대충 숙제랑 청소 끝내고 뭐하지? 뭐 먹고싶긴한데 일단 나가서 정해야지~"
+      }
+    ]
+  },
+  "5": {
+    "option": "EI",
+    "question": "둘 중 더 나에 해당하는 것은?",
+    "answers": [
+      { "type": "E", "content": "아~ 잘놀았다!! 충전완료!!" },
+      {
+        "type": "I",
+        "content": "아~ 잘놀았다!! 이제 집에가서 혼자 쉬면서 충전해야지!!"
+      }
+    ]
+  },
+  "6": {
+    "option": "SN",
+    "question": "공부하기 싫을때",
+    "answers": [
+      {
+        "type": "S",
+        "content": "범위가 줄었으면 좋겠다. 이번에 점수 잘받아야 하는데..."
+      },
+      {
+        "type": "N",
+        "content": "시험을 왜 봐야 하는거지..시험이 없는 시대도 올까..?"
+      }
+    ]
+  },
+  "7": {
+    "option": "TF",
+    "question": "너 열심히 안한것 같은데 되게 잘했다!라는 칭찬을 들으면",
+    "answers": [
+      {
+        "type": "T",
+        "content": "기분좋다. 설렁설렁해도 잘하는 재능있는 사람임을 인정받아서 좋다."
+      },
+      { "type": "F", "content": "기분나쁘다. 너가 뭔데 나보고 열심히 안했대?" }
+    ]
+  },
+  "8": {
+    "option": "JP",
+    "question": "아니,",
+    "answers": [
+      {
+        "type": "J",
+        "content": "후딱 순서부터 정해야지 왜 지금 자료조사를..?"
+      },
+      { "type": "P", "content": "뭘 알아야 계획을 세우지 왜 지금 순서를...?" }
+    ]
+  },
+  "9": {
+    "option": "EI",
+    "question": "둘 중 더 나에 해당하는 것은?",
+    "answers": [
+      { "type": "E", "content": "상대를 기분좋게 하는 방법을 알고있다" },
+      {
+        "type": "I",
+        "content": "상대를 기분나쁘지 않게 배려하는 방법을 알고있다"
+      }
+    ]
+  },
+  "10": {
+    "option": "SN",
+    "question": "요리할 때",
+    "answers": [
+      { "type": "S", "content": "레시피대로 계량하는 것을 선호" },
+      {
+        "type": "N",
+        "content": "계량기 사용은 스트레스 받아;; 감으로 한드아~~"
+      }
+    ]
+  },
+  "11": {
+    "option": "TF",
+    "question": "나 알바 그만뒀어.",
+    "answers": [
+      { "type": "T", "content": "왜? 다른 자리 구함?" },
+      { "type": "F", "content": "왜? 사장님이랑 싸움?" }
+    ]
+  },
+  "12": {
+    "option": "JP",
+    "question": "둘 중 더 나에 해당하는 것은?",
+    "answers": [
+      { "type": "J", "content": "이걸 완벽히 마무리하는 나 멋져" },
+      { "type": "P", "content": "이걸 멋지게 수습하는 나 멋져" }
+    ]
+  },
+  "13": {
+    "option": "EI",
+    "question": "당일 갑자기 잡히는 약속이 반갑나요?",
+    "answers": [
+      { "type": "E", "content": "네, 번개모임 좋아요!" },
+      { "type": "I", "content": "아뇨ㅠ왕부담ㅠ" }
+    ]
+  },
+  "14": {
+    "option": "SN",
+    "question": "과제 제출을 못하게 되었다",
+    "answers": [
+      {
+        "type": "S",
+        "content": "아;;과제 제출 못했네;; 이 과제 중요하댔는데 학점 어떡하냐..."
+      },
+      {
+        "type": "N",
+        "content": "아;; 과제 제출 못했네;; 왜 과제가 오늘까지였을까..?ㅜ"
+      }
+    ]
+  },
+  "15": {
+    "option": "TF",
+    "question": "잠시 생각해볼게",
+    "answers": [
+      { "type": "T", "content": "실제로 고민할 시간이 필요할때 하는 말" },
+      { "type": "F", "content": "거절의 의미로 하는 말" }
+    ]
+  },
+  "16": {
+    "option": "JP",
+    "question": "계획",
+    "answers": [
+      { "type": "J", "content": "최대한 정해진 것에 맞추어서 실행" },
+      { "type": "P", "content": "해보면서 계획을 수정" }
+    ]
+  },
+  "17": {
+    "option": "EI",
+    "question": "주목받는거, 어때?",
+    "answers": [
+      { "type": "E", "content": "좋아아아ㅏㅏㅏㅏ!!!" },
+      { "type": "I", "content": "싫어ㅠㅠㅠㅠㅠ" }
+    ]
+  },
+  "18": {
+    "option": "SN",
+    "question": "눈앞에 보라색 꽃이 있다",
+    "answers": [
+      { "type": "S", "content": "색깔은 보라색이고 줄기는 초록색이구나" },
+      { "type": "N", "content": "저 꽃에서 좋은 향기가 날 것 같다" }
+    ]
+  },
+  "19": {
+    "option": "TF",
+    "question": "나 배탈난것 같아",
+    "answers": [
+      { "type": "T", "content": "오늘? 뭐먹었는데? 갑자기?" },
+      { "type": "F", "content": "약은 먹었어? 조금 쉬어야겠다" }
+    ]
+  },
+  "20": {
+    "option": "JP",
+    "question": "여행갈때",
+    "answers": [
+      { "type": "J", "content": "어디가서 뭘볼지, 뭘 먹을지 정해야돼...." },
+      { "type": "P", "content": "숙소랑 비행기만 잡고 간다!" }
+    ]
+  }
+}
