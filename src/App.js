@@ -12,9 +12,12 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Main />} />
       <Route path="/team_building" element={<Team_building />} />
-      <Route path="/id_login" element={<ID_Login />} />
-      <Route path="/personal/:inputId" element={<Personal />} />
-      <Route path="/team_leader/:inputId" element={<Team_leader />} />
+      <Route path="/id_login/:inputCode" element={<ID_Login />} />
+      <Route path="/personal/:inputCode/:inputId" element={<Personal />} />
+      <Route
+        path="/team_leader/:inputCode/:inputId"
+        element={<Team_leader />}
+      />
     </Routes>
   );
 };

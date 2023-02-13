@@ -21,7 +21,9 @@ import LinkIcon from "@mui/icons-material/Link";
 import IconButton from "@mui/material/IconButton";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Chip from "@mui/material/Chip";
+import moment from "moment";
 
+const date = new Date();
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ alignItems: "center" }}>
@@ -36,6 +38,21 @@ function LinearProgressWithLabel(props) {
     </Box>
   );
 }
+
+/* 레벨 받아오는 변수 */
+
+/* 전역 변수
+var initMin; // 최초 설정할 시간(min)
+var finish
+var remainMinute = (finishtime - starttime)  // 남은시간(
+
+//남은 시간 계산
+
+function 
+   
+
+
+*/
 
 LinearProgressWithLabel.propTypes = {
   /**
@@ -66,19 +83,22 @@ const rows2 = [
 ];
 
 const Personal = () => {
+  const nowTime = moment().format("HH:mm");
   const { inputId } = useParams();
+  const { inputCode } = useParams();
   const [progress, setProgress] = React.useState(10);
   const navigate = useNavigate();
   const handleClick = () => {
     if (inputId == "teamleader") {
-      navigate(`/team_leader/${inputId}`);
+      navigate(`/team_leader/${inputCode}/${inputId}`);
     }
   };
-
+  const [starttime, setStarttime] = React.useState("12:00");
+  const [finishtime, setFinishtime] = React.useState("14:00");
   React.useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) =>
-        prevProgress >= 100 ? 10 : prevProgress + 10
+        prevProgress >= 100 ? 0 : prevProgress + 1
       );
     }, 800);
     return () => {
@@ -94,6 +114,7 @@ const Personal = () => {
       <TitleText>THE BAE/KJOON BOMB</TitleText>
 
       <Chip label={inputId} variant="outlined" />
+      <Chip label={inputCode} />
       <div>
         <Stack
           direction="row"
@@ -105,17 +126,27 @@ const Personal = () => {
             <br></br>
             <br></br>
             <LinkIcon sx={{ fontSize: 100 }} />
+            <Chip label={starttime} />
+            <Chip label={finishtime} />
             <Link
               to="
 https://www.acmicpc.net/problem/1003
 "
               underline="hover"
             >
-              {"피보나치-실버3"}
+              피보나치-실버3
             </Link>
-            <Box sx={{ width: "100%" }}>
-              <LinearProgressWithLabel value={progress} color="error" />
-            </Box>
+            <div
+              className="bomb"
+              hidden={
+                starttime > date.getHours() + ":" + date.getMinutes() ||
+                date.getHours() + ":" + date.getMinutes() > finishtime
+              }
+            >
+              <Box sx={{ width: "100%" }}>
+                <LinearProgressWithLabel value={progress} color="error" />
+              </Box>
+            </div>
           </div>
 
           <div className="rightside">
@@ -199,7 +230,7 @@ https://www.acmicpc.net/problem/1003
   );
 };
 const Background = styled.div`
-  background-color: #6b93bb;
+  background-color: skyblue;
   color: white;
   width: 100vw;
   height: 100vh;
@@ -212,14 +243,12 @@ const Background = styled.div`
 const TitleText = styled.p`
   margin-top: 20px;
   margin-bottom: 50px;
-  background: rgba(224, 224, 224, 0.74);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: rgba(224, 198, 96, 0.77);
   font-family: serif;
   font-size: 45px;
   font-weight: 700;
 `;
-const QuestionText = styled.p`
+const LinkText = styled.p`
   margin-top: 0px;
   margin-bottom: 5px;
   color: rgb(94, 94, 94);

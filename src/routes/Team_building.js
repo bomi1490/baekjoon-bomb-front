@@ -19,6 +19,14 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 const Team_building = () => {
+  const generateRandomCode = (n) => {
+    let str = "";
+    for (let i = 0; i < n; i++) {
+      str += Math.floor(Math.random() * 10);
+    }
+    return str;
+  };
+
   const [inputCode, setInputCode] = useState("");
 
   const handleInputCode = (e) => {
@@ -29,11 +37,20 @@ const Team_building = () => {
   const handleClick = () => {
     if (inputCode) {
       console.log(`current team : ${inputCode}`);
-      navigate(`/id_login`);
+      navigate(`/id_login/${inputCode}`);
+    }
+  };
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      if (inputCode) {
+        console.log(`current team : ${inputCode}`);
+        navigate(`/id_login/${inputCode}`);
+      }
     }
   };
 
   const [level, setLevel] = React.useState("");
+  const [randomcode, setRandomcode] = React.useState("");
 
   const handleChange = (event) => {
     setLevel(event.target.value);
@@ -44,6 +61,7 @@ const Team_building = () => {
   const handleClickOpen = () => {
     if (level) {
       setOpen(true);
+      setRandomcode(generateRandomCode(6));
     }
   };
 
@@ -54,36 +72,50 @@ const Team_building = () => {
   return (
     <Background>
       <TitleText>THE BAE/KJOON BOMB</TitleText>
-
+      <div style={{ display: "flex" }}>
+        <div>
+          <StarBorderOutlinedIcon sx={{ fontSize: 40 }} />
+        </div>
+        <div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div>
+          <EmailOutlinedIcon sx={{ fontSize: 40 }} />
+        </div>
+      </div>
       <div style={{ display: "flex" }}>
         <div className="levelimage">
-          <StarBorderOutlinedIcon sx={{ fontSize: 40 }} />
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Team Level</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={level}
-              label="Level"
-              onChange={handleChange}
-            >
-              <MenuItem value={"bronze5"}>Bronze5</MenuItem>
-              <MenuItem value={"bronze4"}>Bronze4</MenuItem>
-              <MenuItem value={"bronze3"}>Bronze3</MenuItem>
-              <MenuItem value={"bronze2"}>Bronze2</MenuItem>
-              <MenuItem value={"bronze1"}>Bronze1</MenuItem>
-              <MenuItem value={"silver5"}>Silver5</MenuItem>
-              <MenuItem value={"silver4"}>Silver4</MenuItem>
-              <MenuItem value={"silver3"}>Silver3</MenuItem>
-              <MenuItem value={"silver2"}>Silver2</MenuItem>
-              <MenuItem value={"silver1"}>Silver1</MenuItem>
-              <MenuItem value={"gold5"}>Gold5</MenuItem>
-              <MenuItem value={"gold4"}>Gold4</MenuItem>
-              <MenuItem value={"gold3"}>Gold3</MenuItem>
-              <MenuItem value={"gold2"}>Gold2</MenuItem>
-              <MenuItem value={"gold1"}>Gold1</MenuItem>
-            </Select>
-          </FormControl>
+          <Box sx={{ minWidth: 200 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Team Level</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={level}
+                label="Level"
+                onChange={handleChange}
+              >
+                <MenuItem value={"bronze5"}>Bronze5</MenuItem>
+                <MenuItem value={"bronze4"}>Bronze4</MenuItem>
+                <MenuItem value={"bronze3"}>Bronze3</MenuItem>
+                <MenuItem value={"bronze2"}>Bronze2</MenuItem>
+                <MenuItem value={"bronze1"}>Bronze1</MenuItem>
+                <MenuItem value={"silver5"}>Silver5</MenuItem>
+                <MenuItem value={"silver4"}>Silver4</MenuItem>
+                <MenuItem value={"silver3"}>Silver3</MenuItem>
+                <MenuItem value={"silver2"}>Silver2</MenuItem>
+                <MenuItem value={"silver1"}>Silver1</MenuItem>
+                <MenuItem value={"gold5"}>Gold5</MenuItem>
+                <MenuItem value={"gold4"}>Gold4</MenuItem>
+                <MenuItem value={"gold3"}>Gold3</MenuItem>
+                <MenuItem value={"gold2"}>Gold2</MenuItem>
+                <MenuItem value={"gold1"}>Gold1</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
           <br></br>
           <br></br>
           {level && <Chip label={level} />}
@@ -100,7 +132,8 @@ const Team_building = () => {
             <DialogTitle id="alert-dialog-title">{"Random Code:"}</DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                13245<br></br>level : {level}
+                {randomcode}
+                <br></br>level : {level}
               </DialogContentText>
             </DialogContent>
             <DialogActions>
@@ -110,19 +143,11 @@ const Team_building = () => {
             </DialogActions>
           </Dialog>
         </div>
-        <br></br>
-        <br></br>
-        <br></br>
+        <div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
         <div className="Mailimage">
-          <EmailOutlinedIcon sx={{ fontSize: 40 }} />
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "25ch" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
+          <Box sx={{ minWidth: 200 }}>
             <TextField
               required
               id="outlined-required"
@@ -130,6 +155,7 @@ const Team_building = () => {
               defaultValue="Hello World"
               value={inputCode}
               onChange={handleInputCode}
+              onKeyPress={handleKeyPress}
             />
           </Box>
 
@@ -144,8 +170,9 @@ const Team_building = () => {
     </Background>
   );
 };
+
 const Background = styled.div`
-  background-color: #6b93bb;
+  background-color: skyblue;
   color: white;
   width: 100vw;
   height: 100vh;
@@ -157,7 +184,7 @@ const Background = styled.div`
 const TitleText = styled.p`
   margin-top: 20px;
   margin-bottom: 50px;
-  background: rgb(224, 224, 224);
+  background: rgba(224, 198, 96, 0.77);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: serif;

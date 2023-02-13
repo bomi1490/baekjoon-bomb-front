@@ -45,7 +45,7 @@ const Main = () => {
       <Link to="/team_building">
         <StartBtn>Start</StartBtn>
       </Link>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="outlined" color="error" onClick={handleClickOpen}>
         문제가 생겼나요?
       </Button>
       <Dialog open={open} onClose={handleClose}>
@@ -59,7 +59,6 @@ const Main = () => {
             margin="dense"
             id="name"
             label="개선사항"
-            type="email"
             fullWidth
             variant="standard"
             value={inputMsg}
@@ -75,7 +74,7 @@ const Main = () => {
   );
 };
 const Background = styled.div`
-  background-color: #6b93bb;
+  background-color: skyblue;
   color: white;
   width: 100vw;
   height: 100vh;
@@ -87,7 +86,7 @@ const Background = styled.div`
 const TitleText = styled.p`
   margin-top: 20px;
   margin-bottom: 50px;
-  background: rgb(224, 224, 224);
+  background: rgba(224, 198, 96, 0.77);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: serif;

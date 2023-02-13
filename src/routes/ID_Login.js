@@ -1,12 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
+import Chip from "@mui/material/Chip";
 
 const ID_Login = () => {
+  const { inputCode } = useParams();
   const [inputId, setInputId] = useState("");
 
   const handleInputId = (e) => {
@@ -17,7 +19,13 @@ const ID_Login = () => {
   const handleClick = () => {
     if (inputId) {
       console.log(`current id : ${inputId}`);
-      navigate(`/personal/${inputId}`);
+      navigate(`/personal/${inputCode}/${inputId}`);
+    }
+  };
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      console.log(`current id : ${inputId}`);
+      navigate(`/personal/${inputCode}/${inputId}`);
     }
   };
 
@@ -25,6 +33,7 @@ const ID_Login = () => {
     <Background>
       <TitleText>THE BAE/KJOON BOMB</TitleText>
       <br></br>
+      <Chip label={inputCode} />
       <br></br>
       <div className="idimage">
         <BadgeOutlinedIcon sx={{ fontSize: 60 }} />
@@ -46,6 +55,7 @@ const ID_Login = () => {
           defaultValue="Hello World"
           value={inputId}
           onChange={handleInputId}
+          onKeyPress={handleKeyPress}
         />
       </Box>
       <br></br>
@@ -55,7 +65,7 @@ const ID_Login = () => {
   );
 };
 const Background = styled.div`
-  background-color: #6b93bb;
+  background-color: skyblue;
   color: white;
   width: 100vw;
   height: 100vh;
@@ -67,7 +77,7 @@ const Background = styled.div`
 const TitleText = styled.p`
   margin-top: 20px;
   margin-bottom: 50px;
-  background: rgb(224, 224, 224);
+  background: rgba(224, 198, 96, 0.77);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: serif;
