@@ -43,7 +43,16 @@ const Main = () => {
       <QuestionText>이 게임은 어쩌구저쩌구.....</QuestionText>
 
       <Link to="/team_building">
-        <StartBtn>Start</StartBtn>
+        <StartBtn>팀 생성</StartBtn>
+      </Link>
+      <Link to="/join">
+        <StartBtn>회원가입</StartBtn>
+      </Link>
+      <Link to="/id_login">
+        <StartBtn>로그인</StartBtn>
+      </Link>
+      <Link to="/exit">
+        <StartBtn>회원탈퇴</StartBtn>
       </Link>
       <Button variant="outlined" color="error" onClick={handleClickOpen}>
         문제가 생겼나요?
@@ -104,8 +113,8 @@ const QuestionText = styled.p`
 const StartBtn = styled.button`
   background-color: rgb(64, 64, 64);
   color: rgb(190, 190, 190);
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 80px;

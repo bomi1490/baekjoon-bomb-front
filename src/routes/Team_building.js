@@ -19,6 +19,9 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 const Team_building = () => {
+  const [inputId, setInputId] = useState("");
+  const [inputCode, setInputCode] = useState("");
+
   const generateRandomCode = (n) => {
     let str = "";
     for (let i = 0; i < n; i++) {
@@ -27,7 +30,9 @@ const Team_building = () => {
     return str;
   };
 
-  const [inputCode, setInputCode] = useState("");
+  const handleInputId = (e) => {
+    setInputId(e.target.value);
+  };
 
   const handleInputCode = (e) => {
     setInputCode(e.target.value);
@@ -36,33 +41,21 @@ const Team_building = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     if (inputCode) {
+      console.log(`current id : ${inputId}`);
       console.log(`current team : ${inputCode}`);
-      navigate(`/id_login/${inputCode}`);
+      navigate(`/personal/${inputCode}/${inputId}`);
     }
   };
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      if (inputCode) {
-        console.log(`current team : ${inputCode}`);
-        navigate(`/id_login/${inputCode}`);
-      }
+      handleClickOpen();
     }
-  };
-
-  const [level, setLevel] = React.useState("");
-  const [randomcode, setRandomcode] = React.useState("");
-
-  const handleChange = (event) => {
-    setLevel(event.target.value);
   };
 
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
-    if (level) {
-      setOpen(true);
-      setRandomcode(generateRandomCode(6));
-    }
+    setOpen(true);
   };
 
   const handleClose = () => {
@@ -71,85 +64,23 @@ const Team_building = () => {
 
   return (
     <Background>
-      <TitleText>THE BAE/KJOON BOMB</TitleText>
+      <TitleText>팀 생성 페이지</TitleText>
+      <br></br>
+      <Chip label="teamcode:" />
+      <Chip label={inputCode} />
+      <Chip label="id:" />
+      <Chip label={inputId} />
+      <br></br>
+
       <div style={{ display: "flex" }}>
-        <div>
-          <StarBorderOutlinedIcon sx={{ fontSize: 40 }} />
-        </div>
-        <div>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </div>
         <div>
           <EmailOutlinedIcon sx={{ fontSize: 40 }} />
         </div>
-      </div>
-      <div style={{ display: "flex" }}>
-        <div className="levelimage">
-          <Box sx={{ minWidth: 200 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Team Level</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={level}
-                label="Level"
-                onChange={handleChange}
-              >
-                <MenuItem value={"bronze5"}>Bronze5</MenuItem>
-                <MenuItem value={"bronze4"}>Bronze4</MenuItem>
-                <MenuItem value={"bronze3"}>Bronze3</MenuItem>
-                <MenuItem value={"bronze2"}>Bronze2</MenuItem>
-                <MenuItem value={"bronze1"}>Bronze1</MenuItem>
-                <MenuItem value={"silver5"}>Silver5</MenuItem>
-                <MenuItem value={"silver4"}>Silver4</MenuItem>
-                <MenuItem value={"silver3"}>Silver3</MenuItem>
-                <MenuItem value={"silver2"}>Silver2</MenuItem>
-                <MenuItem value={"silver1"}>Silver1</MenuItem>
-                <MenuItem value={"gold5"}>Gold5</MenuItem>
-                <MenuItem value={"gold4"}>Gold4</MenuItem>
-                <MenuItem value={"gold3"}>Gold3</MenuItem>
-                <MenuItem value={"gold2"}>Gold2</MenuItem>
-                <MenuItem value={"gold1"}>Gold1</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-          <br></br>
-          <br></br>
-          {level && <Chip label={level} />}
-          <br></br>
 
-          <StartBtn onClick={handleClickOpen}>Random Code</StartBtn>
-
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">{"Random Code:"}</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                {randomcode}
-                <br></br>level : {level}
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose} autoFocus>
-                OK
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </div>
-        <div>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </div>
         <div className="Mailimage">
           <Box sx={{ minWidth: 200 }}>
             <TextField
-              required
+              requiredd
               id="outlined-required"
               label="Team Code Required"
               defaultValue="Hello World"
@@ -157,14 +88,41 @@ const Team_building = () => {
               onChange={handleInputCode}
               onKeyPress={handleKeyPress}
             />
+
+            <TextField
+              required
+              id="outlined-required"
+              label="baekjoon ID Required"
+              defaultValue="Hello World"
+              value={inputId}
+              onChange={handleInputId}
+              onKeyPress={handleKeyPress}
+            />
           </Box>
 
-          <NotionText>
-            전달받은 팀 코드가 없다면, 왼쪽에서 레벨을 선택한 후<br></br> 랜덤
-            코드 받기를 클릭하세요
-          </NotionText>
+          <EnterBtn variant="outlined" onClick={handleClickOpen}>
+            Enter
+          </EnterBtn>
 
-          <StartBtn onClick={handleClick}>Enter</StartBtn>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"팀이 생성되었습니다."}
+            </DialogTitle>
+            <DialogActions>
+              <Link to="/">
+                <Button onClick={handleClose}>확인</Button>
+              </Link>
+            </DialogActions>
+          </Dialog>
+
+          <Link to="/">
+            <StartBtn>뒤로가기</StartBtn>
+          </Link>
         </div>
       </div>
     </Background>
@@ -199,6 +157,26 @@ const NotionText = styled.p`
   font-size: 13px;
   font-weight: 500;
 `;
+
+const EnterBtn = styled.button`
+  background-color: rgb(64, 64, 64);
+  color: rgb(190, 190, 190);
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 80px;
+  padding-right: 80px;
+  font-family: serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-width: 0px;
+  border-radius: 5px;
+  :hover {
+    background-color: rgb(33, 33, 33);
+  }
+`;
+
 const StartBtn = styled.button`
   background-color: rgb(64, 64, 64);
   color: rgb(190, 190, 190);

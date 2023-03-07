@@ -15,13 +15,20 @@ import PropTypes from "prop-types";
 import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import Stack from "@mui/material/Stack";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import LinkIcon from "@mui/icons-material/Link";
 import IconButton from "@mui/material/IconButton";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Chip from "@mui/material/Chip";
 import moment from "moment";
+import FaceIcon from "@mui/icons-material/Face";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import Stack from "@mui/material/Stack";
+import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
+import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 
 const date = new Date();
 function LinearProgressWithLabel(props) {
@@ -83,18 +90,35 @@ const rows2 = [
 ];
 
 const Personal = () => {
+  const [level, setLevel] = React.useState("");
+
+  const handleChange = (event) => {
+    setLevel(event.target.value);
+  };
+
+  const handleChange_st = (event) => {
+    setStarttime(event.target.value);
+  };
+
+  const handleChange_fin = (event) => {
+    setFinishtime(event.target.value);
+  };
   const nowTime = moment().format("HH:mm");
   const { inputId } = useParams();
   const { inputCode } = useParams();
   const [progress, setProgress] = React.useState(10);
   const navigate = useNavigate();
+  const [show, setShow] = React.useState(0);
   const handleClick = () => {
-    if (inputId == "teamleader") {
-      navigate(`/team_leader/${inputCode}/${inputId}`);
+    if (inputId == "teamleader" && show == 0) {
+      setShow(1);
+    } else if (inputId == "teamleader" && show == 1) {
+      setShow(0);
     }
   };
-  const [starttime, setStarttime] = React.useState("12:00");
-  const [finishtime, setFinishtime] = React.useState("14:00");
+
+  const [starttime, setStarttime] = React.useState("");
+  const [finishtime, setFinishtime] = React.useState("");
   React.useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) =>
@@ -109,23 +133,26 @@ const Personal = () => {
   return (
     <Background>
       <Alert variant="outlined" severity="error">
-        방금 1234ABCD님이 이 문제를 풀었습니다.
+        방금 {inputCode}팀의 {inputId}님이 이 문제를 풀었습니다.
       </Alert>
       <TitleText>THE BAE/KJOON BOMB</TitleText>
 
-      <Chip label={inputId} variant="outlined" />
+      <Chip icon={<FaceIcon />} label={inputId} />
       <Chip label={inputCode} />
       <div>
-        <Stack
-          direction="row"
-          divider={<Divider orientation="vertical" flexItem />}
-          spacing={30}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            "& > *": {
+              m: 1,
+            },
+          }}
         >
           <div className="leftside">
-            <br></br>
-            <br></br>
-            <br></br>
             <LinkIcon sx={{ fontSize: 100 }} />
+            <Chip label={level} />
             <Chip label={starttime} />
             <Chip label={finishtime} />
             <Link
@@ -143,13 +170,13 @@ https://www.acmicpc.net/problem/1003
                 date.getHours() + ":" + date.getMinutes() > finishtime
               }
             >
-              <Box sx={{ width: "100%" }}>
+              <Box sx={{ width: "50%" }}>
                 <LinearProgressWithLabel value={progress} color="error" />
               </Box>
             </div>
           </div>
 
-          <div className="rightside">
+          <div className="centerside">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Inventory2OutlinedIcon sx={{ fontSize: 40 }} />
             <TableContainer component={Paper}>
@@ -183,6 +210,8 @@ https://www.acmicpc.net/problem/1003
                 </TableBody>
               </Table>
             </TableContainer>
+          </div>
+          <div className="rightside">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <InsightsOutlinedIcon sx={{ fontSize: 40 }} />
             <TableContainer component={Paper}>
@@ -217,23 +246,101 @@ https://www.acmicpc.net/problem/1003
               </Table>
             </TableContainer>
           </div>
-        </Stack>
+        </Box>
       </div>
       <Link to="/">
-        <StartBtn>back to menu</StartBtn>
+        <StartBtn>나가기</StartBtn>
       </Link>
 
       <IconButton onClick={handleClick} aria-label="setting" size="large">
         <SettingsIcon sx={{ fontSize: 100 }} />
       </IconButton>
+      <div hidden={show === 0}>
+        <div style={{ display: "flex" }}>
+          <div className="levelimage">
+            <StarBorderOutlinedIcon sx={{ fontSize: 40 }} />
+            <Box sx={{ minWidth: 200 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Team Level
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={level}
+                  label="Level"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"bronze5"}>Bronze5</MenuItem>
+                  <MenuItem value={"bronze4"}>Bronze4</MenuItem>
+                  <MenuItem value={"bronze3"}>Bronze3</MenuItem>
+                  <MenuItem value={"bronze2"}>Bronze2</MenuItem>
+                  <MenuItem value={"bronze1"}>Bronze1</MenuItem>
+                  <MenuItem value={"silver5"}>Silver5</MenuItem>
+                  <MenuItem value={"silver4"}>Silver4</MenuItem>
+                  <MenuItem value={"silver3"}>Silver3</MenuItem>
+                  <MenuItem value={"silver2"}>Silver2</MenuItem>
+                  <MenuItem value={"silver1"}>Silver1</MenuItem>
+                  <MenuItem value={"gold5"}>Gold5</MenuItem>
+                  <MenuItem value={"gold4"}>Gold4</MenuItem>
+                  <MenuItem value={"gold3"}>Gold3</MenuItem>
+                  <MenuItem value={"gold2"}>Gold2</MenuItem>
+                  <MenuItem value={"gold1"}>Gold1</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
+
+          <div className="timeSelect">
+            <TimerOutlinedIcon sx={{ fontSize: 40 }} />
+            <Box sx={{ minWidth: 200 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">StartTime</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={starttime}
+                  label="StartTime"
+                  onChange={handleChange_st}
+                >
+                  <MenuItem value={"10:00"}>10:00</MenuItem>
+                  <MenuItem value={"11:00"}>11:00</MenuItem>
+                  <MenuItem value={"12:00"}>12:00</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <Box sx={{ minWidth: 200 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  FinishTime
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={finishtime}
+                  label="FinishTime"
+                  onChange={handleChange_fin}
+                >
+                  <MenuItem value={"10:00"}>10:00</MenuItem>
+                  <MenuItem value={"11:00"}>11:00</MenuItem>
+                  <MenuItem value={"12:00"}>12:00</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
+        </div>
+        {level && <Chip label={level} />}
+        {starttime && <Chip label={starttime} />}
+        {finishtime && <Chip label={finishtime} />}
+        <StartBtn onClick={handleClick}>select</StartBtn>
+      </div>
     </Background>
   );
 };
 const Background = styled.div`
   background-color: skyblue;
   color: white;
-  width: 100vw;
-  height: 100vh;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
